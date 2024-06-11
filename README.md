@@ -1,2 +1,3 @@
-# appmedico
-Repositorio para aplicacion de consultorio medico
+Repositorio del proyecto del Consultorio del Bienestar (AppMedico)
+
+IP del sevidor (En DigitalOcean):
