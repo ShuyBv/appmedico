@@ -14,15 +14,15 @@ class CreateCitasTable extends Migration
     public function up()
     {
         Schema::create('citas', function (Blueprint $table) {
-            $table->id('id_cita');
-            $table->date('fecha');
-            $table->time('hora');
+            $table->id();
+            $table->string('motivos');
+            $table->dateTime('fechaHora');
             $table->unsignedBigInteger('id_paciente');
             $table->unsignedBigInteger('id_tipo_servicio');
             $table->timestamps();
 
             // Definir las llaves foráneas
-            $table->foreign('id_paciente')->references('id')->on('paciente')->onDelete('cascade');
+            $table->foreign('id_paciente')->references('id')->on('pacientes')->onDelete('cascade');
             $table->foreign('id_tipo_servicio')->references('id')->on('tipo_servicios')->onDelete('cascade');
         });
     }

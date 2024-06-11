@@ -29,11 +29,12 @@
             </h2>
             
             <!-- Formulario de inicio de sesión -->
-            <form class="mt-6 w-full">
+            <form class="mt-6 w-full" action="{{ route('verificar-login') }}" method="POST">
+                @csrf 
                 <!-- Campo de correo electrónico -->
                 <div class="mb-4">
                     <label for="email" class="block text-bs font-medium text-gray-700">Correo Electronico</label>
-                    <input type="email" name="email" id="email" placeholder="Ingresa tu correo electronico"
+                    <input type="email" name="correo" id="correo" placeholder="Ingresa tu correo electronico"
                         class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-700 focus:border-blue-700 sm:text-sm"
                         required>
                 </div>

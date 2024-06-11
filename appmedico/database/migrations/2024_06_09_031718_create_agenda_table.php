@@ -19,7 +19,7 @@ class CreateAgendaTable extends Migration
             $table->timestamps();
 
             // Definir la llave foránea
-            $table->foreign('id_cita')->references('id_cita')->on('citas')->onDelete('cascade');
+            $table->foreign('id_cita')->references('id')->on('citas')->onDelete('cascade');
         });
     }
 
