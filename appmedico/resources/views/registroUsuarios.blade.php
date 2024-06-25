@@ -19,13 +19,14 @@
         </div>
     </header>
 
-    <div class="flex items-center justify-center h-screen" style="margin-top: -50px;">
-        <div class="bg-white bg-opacity-80 border-gray-800 p-8 md:p-10 rounded-lg shadow-xl flex flex-col items-center w-full max-w-2xl"> 
+    <div class="flex items-center justify-center h-screen" style="margin-top: -40px;">
+        <div class="bg-white bg-opacity-80 border border-grisgob1 p-4 md:p-10 shadow-xl flex flex-col items-center w-full max-w-2xl"> 
             <h2 class="text-2xl font-bold text-black">Ingresa los datos necesarios para registrarte</h2>
-            <form class="mt-6 w-full grid grid-cols-2 gap-4">
+            <form class="mt-6 w-full grid grid-cols-2 gap-4" action="{{ route('validar-registro') }}" method="POST">
+                @csrf
                 <div>
                     <label for="nombres" class="block text-sm font-medium text-gray-700">Nombre</label>
-                    <input type="text" name="nombres" id="nombres"
+                    <input type="text" name="nombre" id="nombre"
                         class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-700 focus:border-blue-700 sm:text-sm"
                         required>
                 </div>
@@ -37,7 +38,7 @@
                 </div>
                 <div>
                     <label for="tipo_usuario" class="block text-sm font-medium text-gray-700">Tipo de personal</label>
-                    <select name="tipo_usuario" id="tipo_usuario"
+                    <select name="tipoUsuario" id="tipoUsuario"
                         class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-700 focus:border-blue-700 sm:text-sm"
                         required>
                         <option value="">Seleccione una opción</option>
@@ -47,13 +48,13 @@
                 </div>
                 <div>
                     <label for="profesion" class="block text-sm font-medium text-gray-700">Profesión</label>
-                    <input type="text" name="profesion" id="profesion"
+                    <input type="text" name="area" id="area"
                         class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-700 focus:border-blue sm:text-sm"
                         required>
                 </div>
                 <div>
                     <label for="contrasena" class="block text-sm font-medium text-gray-700">Contraseña</label>
-                    <input type="password" name="contrasena" id="contrasena"
+                    <input type="password" name="password" id="password"
                         class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-700 focus:border-blue-700 sm:text-sm"
                         required>
                 </div>

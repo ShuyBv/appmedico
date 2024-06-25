@@ -14,7 +14,7 @@
         <img src="/img/logomx.svg" alt="Logo" class="h-10 w-auto">
         <span class="text-white text-2xl font-bold">Consultorio del Bienestar</span>
         <div class="flex space-x-8">
-            <a href="https://www.gob.mx/" class="text-white text-xl hover:text-white">Cerrar sesion</a>
+            <a href="{{ route('logout') }}"><button class=" text-white text-xl hover:text-white ">Cerrar sesión</button></a>        
         </div>
     </header>
 
@@ -63,12 +63,7 @@
                     <p class="text-gray-900">josemtz@gmail.com</p>
                 </div>
             </div>
-            <div class="col-span-2 flex justify-between mt-6">
-                <button type="button"
-                    style="margin-right: 16px;" 
-                    class="w-1/3 flex justify-center py-2 px-4 border border-colorgob1 text-bs font-medium text-colorgob1 hover:bg-colorgob1 hover:text-white" onclick="location.href='/expediente'">
-                    Expediente
-                </button>
+            <div class="col-span-2 flex justify-center mt-6">
                 <button type="button"
                     class="w-1/3 flex justify-center py-2 px-4 border border-grisgob1 text-bs font-medium text-grisgob1 hover:bg-grisgob1 hover:text-white"  onclick="location.href='/doctor'">
                     Regresar

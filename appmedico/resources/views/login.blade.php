@@ -20,9 +20,9 @@
         </div>
     </header>
     <!-- Contenedor principal que centra el contenido verticalmente -->
-    <div class="flex justify-center items-center h-full">
+    <div class="flex justify-center items-center h-full" style="margin-top: -40px;">
         <!-- div contenedor del formulario de inicio de sesión -->
-        <div class="bg-opacity-80 bg-white border-gray-800 p-4 md:p-10 rounded-lg shadow-xl flex flex-col items-center w-full max-w-md">
+        <div class="bg-opacity-80 bg-white border border-grisgob1 p-4 md:p-10 shadow-xl flex flex-col items-center w-full max-w-md">
             <!-- Título de bienvenida -->
             <h2 class="text-2xl font-bold mt-6">
                 Bienvenido, <span class="font-normal"> ingresa tus datos</span>
@@ -56,11 +56,11 @@
                 </div>
             </form>
             
-            <!-- Enlace para registrarse -->
+            <!-- Enlace para registrarse
             <p class="mt-6 text-center text-sm">
                 <a href="#" class="font-medium text-gray-600 hover:text-gray-500" onclick="location.href='/registroUsuarios'"> Regístrate
                 </a>
-            </p>
+            </p>-->
         </div>
     </div>
 </body>

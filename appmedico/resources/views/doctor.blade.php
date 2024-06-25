@@ -13,7 +13,7 @@
         <img src="/img/logomx.svg" alt="Logo" class="h-10 w-auto">
         <span class="text-white text-2xl font-bold">Consultorio del Bienestar</span>
         <div class="flex space-x-8">
-            <a href="https://www.gob.mx/" class="text-white text-xl hover:text-white">Cerrar sesion</a>
+            <a href="{{ route('logout') }}"><button class=" text-white text-xl hover:text-white ">Cerrar sesión</button></a>        
         </div>
     </header>
     
@@ -38,7 +38,7 @@
                         <th class="py-2 px-4 border-b border-gray-300">Nombre</th>
                         <th class="py-2 px-4 border-b border-gray-300">Fecha</th>
                         <th class="py-2 px-4 border-b border-gray-300">Hora</th>
-                        <th class="py-2 px-4 border-b border-gray-300">Detalles</th>
+                        <th class="py-2 px-4 border-b border-gray-300">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,14 +46,13 @@
                         <td class="py-2 px-4 border-b border-gray-300">Jesus Olazaran</td>
                         <td class="py-2 px-4 border-b border-gray-300 text-center">19/06/2024</td>
                         <td class="py-2 px-4 border-b border-gray-300 text-center">1:30 p.m.</td>
-                        <td class="py-2 px-4 border-b border-gray-300 text-center"><button class="bg-white text-colorgob3 px-4 py-2 border border-colorgob3 hover:bg-colorgob3 hover:text-white" onclick="location.href='/detallesPacientes'">Ver detalles</button></td>
+                        <td class="py-2 px-4 border-b border-gray-300 text-center"><button class="bg-white text-colorgob3 px-4 py-2 border border-colorgob3 hover:bg-colorgob3 hover:text-white" onclick="location.href='/detallesPacientes'">Ver detalles</button> <button class="bg-white text-colorgob1 px-4 py-2 border border-colorgob1 hover:bg-colorgob1 hover:text-white" onclick="location.href='/detallesPacientes'">Ver Expediente</button></td>
                     </tr>
                     <tr>
                         <td class="py-2 px-4 border-b border-gray-300">Jose Guadalupe</td>
                         <td class="py-2 px-4 border-b border-gray-300 text-center">17/07/2024</td>
                         <td class="py-2 px-4 border-b border-gray-300 text-center">08:15 a.m.</td>
-                        <td class="py-2 px-4 border-b border-gray-300 text-center"><button class="bg-white text-colorgob3 px-4 py-2 border border-colorgob3 hover:bg-colorgob3 hover:text-white" onclick="location.href='/detallesPacientes'">Ver detalles</button></td>
-                    </tr>
+                        <td class="py-2 px-4 border-b border-gray-300 text-center"><button class="bg-white text-colorgob3 px-4 py-2 border border-colorgob3 hover:bg-colorgob3 hover:text-white" onclick="location.href='/detallesPacientes'">Ver detalles</button> <button class="bg-white text-colorgob1 px-4 py-2 border border-colorgob1 hover:bg-colorgob1 hover:text-white" onclick="location.href='/detallesPacientes'">Ver Expediente</button></td>                    </tr>
                 </tbody>
             </table>
         </div>

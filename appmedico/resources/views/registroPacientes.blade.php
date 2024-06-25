@@ -14,7 +14,7 @@
         <img src="/img/logomx.svg" alt="Logo" class="h-10 w-auto">
         <span class="text-white text-2xl font-bold">Consultorio del Bienestar</span>
         <div class="flex space-x-8">
-            <a href="https://www.gob.mx/" class="text-white text-xl hover:text-white">Cerrar sesion</a>
+            <a href="{{ route('logout') }}"><button class=" text-white text-xl hover:text-white ">Cerrar sesión</button></a>        
         </div>
     </header>
     
