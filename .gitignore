@@ -8,7 +8,7 @@
 # .env
 # .env.backup
 # .env.production
-# .phpactor.json
+# .phpactor.jsongit 
 # .phpunit.result.cache
 # Homestead.json
 # Homestead.yaml
@@ -17,5 +17,4 @@
 # yarn-error.log
 # /.fleet
 # /.idea
-# /.vscode
-.DS_Store
+# /.vscoded w d
