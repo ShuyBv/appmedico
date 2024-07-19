@@ -2,35 +2,45 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Citas;
-use App\Models\Paciente;
-use App\Models\Tipo_servicio;
-
 use Illuminate\Http\Request;
 
-class CitasController extends Controller{
-    public function registrarCita(Request $request){
-        $request->validate([
-            'fechaHora' => 'required|date_format:Y-m-d\TH:i',
-            'nombre' => 'required|string',
-            'tipoServicio' => 'required|string'
-        ]);
+use App\Models\Citas;
+use Illuminate\Support\Facades\Hash;
 
+class CitasController extends Controller
+{
+    function registrarCita (Request $request) {
+        // validar datos 
         $cita = new Citas();
 
+        $cita->nombre = $request->nombre;
         $cita->motivos = $request->motivos;
+        $cita->doctor = $request->doctor;
         $cita->fechaHora = $request->fechaHora;
+        $cita->servicio = NULL;
 
-        // Buscamos al paciente por su nombre
-        $paciente = Paciente::where('nombre', $request->nombre)->firstOrFail();
-        $cita->paciente()->associate($paciente);
-
-        // Buscamos el tipo de servicio por su nombre
-        $tipoServicio = Tipo_servicio::where('tipo', $request->tipoServicio)->firstOrFail();
-        $cita->tipo_servicio()->associate($tipoServicio);
+        if (!empty($request->servicio)) {
+            $cita->servicio = $request->servicio;
+        }
 
         $cita->save();
-        
-        return redirect()->route('recepcionista')->with('success', 'Cita registrada exitosamente');
+
+        return redirect(route('registrarCita'));
+    }
+
+    public function infoCitas () {
+        // Obtener solo los campos necesarios
+        $citas = Citas::all(['nombre', 'motivos', 'fechaHora']);
+        // Formatear los datos para que FullCalendar los entienda
+        $events = $citas->map(function ($cita) {
+            return [
+                'title' => $cita->nombre . ' - ' . $cita->motivos,
+                'start' => \Carbon\Carbon::parse($cita->fechaHora)->format('Y-m-d\TH:i:s'),
+                'description' => $cita->motivos,
+                'backgroundColor' => '#28a745', // Color verde para los eventos
+                'borderColor' => '#28a745'
+            ];
+        });
+        return response()->json($events);
     }
 }

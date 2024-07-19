@@ -7,27 +7,23 @@ use Illuminate\Http\Request;
 use App\Models\Paciente;
 use Illuminate\Support\Facades\Hash;
 
-class PacienteController extends Controller{
-    public function registerPatient(Request $request){
+class PacienteController extends Controller {
+    
+    public function registrarPaciente(Request $request){
         $paciente = new Paciente();
 
         $paciente->nombre = $request->nombre;
-        $paciente->apellidos = $request->apellidos;
-        $paciente->edad = $request->edad;
-        $paciente->genero = $request->genero;
+        $paciente->email = $request->email;
+        $paciente->telefono = $request->telefono;
+        $paciente->fechaNacimiento = $request->fechaNacimiento;
         $paciente->altura = $request->altura;
         $paciente->peso = $request->peso;
-        $paciente->enfermedades = $request->enfermedades;
+        $paciente->genero = $request->genero;
         $paciente->alergias = $request->alergias;
-        $paciente->telefono = $request->telefono;
-        $paciente->correo = $request->correo;
 
         $paciente->save();
 
-        return redirect(route('secretario'));
+        return redirect(route('doctor'));
     }
-
-    public function paciente(){
-        return $this->belongsTo('App\Models\Paciente', 'id_paciente');
-    }
+    
 }

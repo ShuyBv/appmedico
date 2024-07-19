@@ -18,12 +18,13 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'nombre',
-        'apellidos',
-        'password',
-        'correo',
+        'fechaNacimiento',
         'telefono',
-        'area',
-        'tipoUsuario'
+        'email',
+        'password',
+        'tipoUsuario',
+        'especialidad', 
+        'area'
     ];
 
     /**
@@ -44,6 +45,7 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
+            'fechaNacimiento' => 'date',
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];

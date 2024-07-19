@@ -17,15 +17,13 @@ class Paciente extends Model
 
     protected $fillable = [
         'nombre',
-        'apellidos',
-        'edad',
-        'genero',
+        'email',
+        'telefono',
+        'fechaNacimiento',
         'altura',
         'peso',
-        'enfermedades',
-        'alergias',
-        'telefono',
-        'correo'
+        'genero',
+        'alergias'
     ];
 
     /**
@@ -44,9 +42,10 @@ class Paciente extends Model
      * @return array<string, string>
      */
     protected $casts = [
+        'fechaNacimiento' => 'date',
         'edad' => 'integer',
         'altura' => 'decimal:2',
-        'peso' => 'decimal:2',
+        'peso' => 'decimal:2'
     ];
     
 }

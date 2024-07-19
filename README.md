@@ -1,5 +1,2 @@
-Repositorio del proyecto del Consultorio del Bienestar (AppMedico):
-
-Login funcional
-
-IP del sevidor (En DigitalOcean):
+## IP DEL SERVIDOR
+- http://159.89.43.81/

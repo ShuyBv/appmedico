@@ -14,12 +14,12 @@ class Citas extends Model
      *
      * @var array<int, string>
      */
-
     protected $fillable = [
+        'nombre',
         'motivos',
+        'doctor',
         'fechaHora',
-        'id_paciente',
-        'id_tipo_servicio'
+        'servicio'
     ];
 
     /**
@@ -28,8 +28,8 @@ class Citas extends Model
      * @var array<int, string>
      */
     protected $hidden = [
-        'created_at',
-        'updated_at',
+        'password',
+        'remember_token',
     ];
 
     /**
@@ -37,16 +37,10 @@ class Citas extends Model
      *
      * @return array<string, string>
      */
-    protected $casts = [
-        'fechaHora' => 'datetime',
-        'id_paciente' => 'integer',
-        'id_tipo_servicio' => 'integer'
-    ];
-    
-    public function paciente() {
-        return $this->belongsTo(Paciente::class, 'id_paciente');
-    }
-    public function tipo_servicio(){
-        return $this->belongsTo('App\Models\Tipo_servicio', 'id_tipo_servicio');
+    protected function casts(): array
+    {
+        return [
+            'fechaHora' => 'datetime',
+        ];
     }
 }
