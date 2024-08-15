@@ -13,6 +13,7 @@ use Illuminate\Console\View\Components\BulletList;
 use Illuminate\Console\View\Components\Error;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Debug\ExceptionHandler as ExceptionHandlerContract;
+use Illuminate\Contracts\Debug\ShouldntReport;
 use Illuminate\Contracts\Foundation\ExceptionRenderer;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -398,6 +399,10 @@ class Handler implements ExceptionHandlerContract
     protected function shouldntReport(Throwable $e)
     {
         if ($this->withoutDuplicates && ($this->reportedExceptionMap[$e] ?? false)) {
+            return true;
+        }
+
+        if ($e instanceof ShouldntReport) {
             return true;
         }
 
@@ -833,9 +838,11 @@ class Handler implements ExceptionHandlerContract
     {
         try {
             if (config('app.debug')) {
-                return app()->has(ExceptionRenderer::class)
-                    ? $this->renderExceptionWithCustomRenderer($e)
-                    : $this->container->make(Renderer::class)->render(request(), $e);
+                if (app()->has(ExceptionRenderer::class)) {
+                    return $this->renderExceptionWithCustomRenderer($e);
+                } elseif ($this->container->bound(Renderer::class)) {
+                    return $this->container->make(Renderer::class)->render(request(), $e);
+                }
             }
 
             return $this->renderExceptionWithSymfony($e, config('app.debug'));
