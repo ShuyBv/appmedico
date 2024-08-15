@@ -7,35 +7,10 @@
     @vite('resources/css/app.css')
     <title>Consultar cita</title>
     <style>
-        html,
-        body {
-            overflow: hidden;
-            height: 100%;
-        }
-
         .scrollable-content {
-            overflow-y: scroll;
+            overflow-y: auto;
             height: 100%;
-            scrollbar-width: thin;
-            /* Para Firefox */
-            scrollbar-color: white transparent;
-            /* Para Firefox */
         }
-
-        .scrollable-content::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .scrollable-content::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .scrollable-content::-webkit-scrollbar-thumb {
-            background-color: white;
-            border-radius: 20px;
-            border: 3px solid transparent;
-        }
-
 
         .flex-row {
             display: flex;
@@ -44,10 +19,6 @@
 
         .flex-col {
             flex: 0.56;
-        }
-
-        .custom-width {
-            max-width: 750px;
         }
 
         .medications-row {
@@ -270,8 +241,8 @@
                                 más</button>
                         </div>
 
-                        <!-- Productos usados -->
-                        <div class="col-span-2 grid grid-cols-2 gap-4">
+                         <!-- Productos usados -->
+                         <div class="col-span-2 grid grid-cols-2 gap-4">
                             <div class="col-span-2">
                                 <label class="block text-sm font-medium text-gray-700">Productos:</label>
                                 <div id="productFields" class="space-y-2">
@@ -284,8 +255,7 @@
                                                 onchange="updateTotal()">
                                                 <option value="">Selecciona un producto</option>
                                                 @foreach ($productos as $item)
-                                                    <option value="{{ $item->id }}"
-                                                        data-precio="{{ $item->costo }}"
+                                                    <option value="{{ $item->id }}" data-precio="{{ $item->costo }}"
                                                         {{ $producto['id'] == $item->id ? 'selected' : '' }}>
                                                         {{ $item->nombre }} - ${{ $item->costo }}
                                                     </option>
@@ -338,37 +308,8 @@
                     </div>
                 </form>
             </div>
-            <div id="opinionModal"
-                class="fixed inset-0 z-50 bg-gray-600 bg-opacity-50 flex items-center justify-center">
-                <div class="bg-white p-6 rounded-lg shadow-xl w-full max-w-md">
-                    <div class="text-center">
-                        <h3 class="text-lg font-medium text-gray-900 mb-4">Pedir una Opinión</h3>
-                        <p class="text-sm text-gray-500 mb-4">¿A qué doctor deseas pedir una opinión?</p>
-                        <form action="{{ route('enviar.opinion') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="cita_id" value="{{ $cita->id }}">
-                            <select id="doctorSelect" name="doctor_id" class="select2 w-full mb-4 p-2 text-base border rounded-md">
-                                @foreach ($doctores as $doctor)
-                                    <option value="{{ $doctor->id }}">{{ $doctor->nombre_completo }}</option>
-                                @endforeach
-                            </select>                            
-
-                            <!-- Textarea para escribir el mensaje -->
-                            <textarea name="mensaje" class="w-full p-2 border border-gray-300 rounded-md mb-4"
-                                placeholder="Escribe tu mensaje..."></textarea>
-
-                            <!-- Botones -->
-                            <div class="flex justify-between mt-4">
-                                <button type="button" id="closeModal"
-                                    class="w-1/3 bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-400">Cerrar</button>
-                                <button type="submit"
-                                    class="w-1/3 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-400">Enviar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
     </div>
+
     <script>
         function addMedicationField() {
             var container = document.getElementById('medicationFields');
@@ -493,33 +434,18 @@
             total += servicePrice;
 
             const selectedEnfermera = document.getElementById('enfermeraSelect');
-            const enfermeraSueldo = parseFloat(selectedEnfermera.options[selectedEnfermera.selectedIndex].dataset.sueldo ||
-                0);
+            const enfermeraSueldo = parseFloat(selectedEnfermera.options[selectedEnfermera.selectedIndex].dataset.sueldo || 0);
             total += enfermeraSueldo;
 
             document.getElementById('total').value = total.toFixed(2);
         }
-
+        
         document.addEventListener('DOMContentLoaded', function() {
             updateTotal();
             document.querySelectorAll('input[name="cantidades[]"], select[name="productos[]"]').forEach(function(
                 element) {
                 element.addEventListener('input', updateTotal);
                 element.addEventListener('change', updateTotal);
-            });
-        });
-
-        $(document).ready(function() {
-            $('.select2').select2();
-
-            $('#opinionModal').addClass('hidden');
-
-            $('#pedirOpinionBtn').on('click', function() {
-                $('#opinionModal').removeClass('hidden');
-            });
-
-            $('#closeModal').on('click', function() {
-                $('#opinionModal').addClass('hidden');
             });
         });
     </script>
